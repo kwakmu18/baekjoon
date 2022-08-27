@@ -17,9 +17,7 @@ int main(void) {
 }
 
 void main_function(int plus_Wh_bill, int diff_bill) {
-	int a_Wh, b_Wh, a_bill, b_bill, ab_Wh, binary_Wh;
-	ab_Wh=calculate_Wh(plus_Wh_bill);
-	int left=0, right=ab_Wh, mid;
+	int ab_Wh=calculate_Wh(plus_Wh_bill), binary_Wh, left=0, right=ab_Wh, mid;
 	while (left<=right) {
 		mid=(left+right)/2;
 		binary_Wh=abs(calculate_bill(mid)-calculate_bill(ab_Wh-mid));
