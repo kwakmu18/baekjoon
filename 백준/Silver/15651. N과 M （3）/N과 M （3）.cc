@@ -1,25 +1,39 @@
-#include <iostream>
-#include <cmath>
-using namespace std;
-int main(void) {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    int m, n, j;
-    cin >> n >> m;
-    int *arr=new int[m+1];
-    for(int i=0;i<m;i++) arr[i]=1;
-    arr[m]=0;
-    for(int i=0;i<(int)pow(n,m);i++) {
-        arr[m]++;
-        j=m;
-        while (arr[j]>n) {
-                    arr[j]=1;
-                    arr[j-1]+=1;
-                    j--;
-        }
-        
-        for(int k=1;k<=m;k++) cout << arr[k] << " ";
-        cout << "\n";
-        }
+#include <bits/stdc++.h>
 
-} 
+using namespace std;
+
+int N, M;
+vector<int> arr;
+vector<bool> visited;
+vector<int> visitedNumbers;
+
+void dfs(int cnt) {
+    if (cnt==M) {
+        for(int i=0;i<M;i++) cout << visitedNumbers[i] << " ";
+        cout << "\n";
+        return;
+    }
+
+    for(int i=0;i<N;i++) {
+        visitedNumbers.push_back(arr[i]);
+        dfs(cnt+1);
+        visitedNumbers.pop_back();
+    }
+}
+
+int main(void) {
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+    cin >> N >> M;
+    arr.resize(N);
+    visited.resize(N);
+
+    for(int i=0;i<N;i++) {
+        arr[i]=i+1;
+        visited[i]=false;
+    }
+
+    dfs(0);
+    
+    return 0;
+}
