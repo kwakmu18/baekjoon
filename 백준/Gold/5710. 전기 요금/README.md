@@ -8,7 +8,7 @@
 
 ### 분류
 
-이분 탐색(binary_search), 구현(implementation), 수학(math)
+이분 탐색, 구현, 수학
 
 ### 문제 설명
 
