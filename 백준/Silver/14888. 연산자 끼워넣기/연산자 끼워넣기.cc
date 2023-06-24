@@ -4,7 +4,7 @@ using namespace std;
 
 char op[4] = {'+', '-', '*', '/'};
 
-int N, maxResult = -987654321, minResult = 987654321;
+int N, maxResult = -1000000001, minResult = 1000000001;
 vector<int> numbers;
 map<char,int> operators;
 map<char,int> visited;
