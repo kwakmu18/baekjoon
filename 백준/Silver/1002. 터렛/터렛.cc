@@ -8,6 +8,10 @@ int main(void) {
     while (n--) {
         double x1, y1, r1, x2, y2, r2;
         cin >> x1 >> y1 >> r1 >> x2 >> y2 >> r2;
+        if (r1==0) {
+            cout << "1\n";
+            continue;
+        }
         double plus=(r1+r2)*(r1+r2), minus=(r1-r2)*(r1-r2), distance=((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
         if (distance==0) { 
             if (r1==r2) flag=-1;
