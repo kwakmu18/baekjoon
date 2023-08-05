@@ -5,22 +5,18 @@ int N, id;
 char image[64][64];
 char result[20000];
 
-void quadTree(int y, int x, int size) {
-	int base = image[y][x];
-	int flag = 1;
+int check(int y, int x, int size) {
 	for(int i=y;i<y+size;i++) {
 		for(int j=x;j<x+size;j++) {
-			if (image[i][j]!=base) {
-				flag = 0;
-				break;
-			}
+			if (image[y][x]!=image[i][j]) return 0;
 		}
-		if (!flag) break;
 	}
-	if (flag) {
-		result[id++]=base;
-		return;
-	}
+	return 1;
+}
+
+void quadTree(int y, int x, int size) {
+	int base = image[y][x];
+	if (check(y,x,size)) result[id++]=base;
 	else {
 		result[id++]='(';
 		size /= 2;
