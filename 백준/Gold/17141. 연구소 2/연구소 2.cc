@@ -21,6 +21,29 @@ vector<bool> usedVirus;
 
 int movPos[4][2] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
 
+void BFS(int index, int curY, int curX, int curCost) {
+    queue<tuple<int,int,int>> q;
+
+    q.push({curY, curX, curCost});
+
+    while (!q.empty()) {
+        int nowY = get<0>(q.front()), nowX = get<1>(q.front()), nowCost = get<2>(q.front());
+        //cout << index << " " << nowY << " " << nowX << "\n";
+        q.pop();
+        if (virusResult[index][nowY][nowX]!=-1 && virusResult[index][nowY][nowX]<=nowCost) continue;
+        virusResult[index][nowY][nowX] = nowCost;
+
+        for(int i=0;i<4;i++) {
+            int newY = nowY+movPos[i][0], newX = nowX+movPos[i][1], newCost = nowCost+1;
+            if (newY>=0 && newY < N && newX>=0 && newX<N && curLab[newY][newX]!=1) {
+                if (virusResult[index][newY][newX]==-1) q.push({newY,newX,newCost});
+                else if (virusResult[index][newY][newX]!=-1 && 
+                virusResult[index][newY][newX]>newCost) q.push({newY,newX,newCost});
+            }
+        }
+    }
+}
+
 void DFS(int index, int curY, int curX, int curCost) {
     if (virusResult[index][curY][curX]==-1) virusResult[index][curY][curX] = curCost;
     else virusResult[index][curY][curX] = min(virusResult[index][curY][curX], curCost);
@@ -110,7 +133,7 @@ int main(void) {
         }
     }
     
-    for(int i=0;i<virusCnt;i++) DFS(i, virusPos[i].first, virusPos[i].second, 0);
+    for(int i=0;i<virusCnt;i++) BFS(i, virusPos[i].first, virusPos[i].second, 0);
 
     SelectVirus(0, 0);
     cout << ans;
