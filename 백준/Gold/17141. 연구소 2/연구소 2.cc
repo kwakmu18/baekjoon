@@ -39,10 +39,10 @@ int ans = -1;
 void SelectVirus(int curCnt, int curIndex) {
     if (curCnt == M) {
         for(int y=0;y<N;y++) {
-            for(int x=0;x<N;x++) cost[y][x] = -1;
+            for(int x=0;x<N;x++) cost[y][x] = virusResult[selectedVirus[0]][y][x];
         }
 
-        for(int i=0;i<M;i++) {
+        for(int i=1;i<M;i++) {
             for(int y=0;y<N;y++) {
                 for(int x=0;x<N;x++) {
                     if (curLab[y][x]==1) continue;
